@@ -50,37 +50,25 @@ Manager - Add Package from disk. Последовательно добавьте
 - ml-agents-release_19 / com,unity.ml-agents.extensions / package.json
 - Если все сделано правильно, то во вкладке с компонентами
 (Components) внутри Unity вы увидите строку ML Agent.
+![image](https://user-images.githubusercontent.com/113620568/196039064-3ed1281b-efd6-496b-bb21-d359d947d3f6.png)
+
 - Далее запускаем Anaconda Prompt для возможности запуска команд
 через консоль.
 - Далее пишем серию команд для создания и активации нового ML-
 агента, а также для скачивания необходимых библиотек:
 - mlagents 0.28.0;
 - torch 1.7.1;
-```py
+![image](https://user-images.githubusercontent.com/113620568/196039111-c78e5d01-d2e8-4861-886d-10ade84da3ac.png)
+![image](https://user-images.githubusercontent.com/113620568/196039129-f17a5c9c-ca0c-49c8-b482-d7fbdd7d3d07.png).
+- После этих действий запускаю MLAgent и обучаю его
+![image](https://user-images.githubusercontent.com/113620568/196039577-3a79c626-9482-46e3-8863-62df17644947.png)
 
-In [ ]:
-#Import the required modules, numpy for calculation, and Matplotlib for drawing
-import numpy as np
-import matplotlib.pyplot as plt
-#This code is for jupyter Notebook only
-%matplotlib inline
+В ходе выполнения программы куб хаотично респавнится в пределах плоскости,а шарик перемещается в сторону куба.
 
-# define data, and change list to array
-x = [3,21,22,34,54,34,55,67,89,99]
-x = np.array(x)
-y = [2,22,24,65,79,82,55,130,150,199]
-y = np.array(y)
-
-#Show the effect of a scatter plot
-plt.scatter(x,y)
-
-```
-
-- Определите связанные функции. Функция модели: определяет модель линейной регрессии wx+b. Функция потерь: функция потерь среднеквадратичной ошибки. Функция оптимизации: метод градиентного спуска для нахождения частных производных w и b.
 
 
 ## Задание 2
-### Должна ли величина loss стремиться к нулю при изменении исходных данных? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ.
+### Подробно опишите каждую строку файла конфигурации нейронной сети
 
 - Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
 - Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
