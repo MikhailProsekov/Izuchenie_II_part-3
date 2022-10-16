@@ -70,58 +70,40 @@ Manager - Add Package from disk. Последовательно добавьте
 ## Задание 2
 ### Подробно опишите каждую строку файла конфигурации нейронной сети
 
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
+![image](https://user-images.githubusercontent.com/113620568/196040516-69c0a47c-f921-4ca3-a84e-0b94935a2eb2.png)
 
 ```py
 
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
+behaviors:
+  RollerBall:              #Для RollerBall
+    trainer_type: ppo      #Обучение с подкреплением
+    hyperparameters:        #Параметры обучения
+      batch_size: 10        #Необходимо 10 циклов для обновления локальных экстремумов функции
+      buffer_size: 100      #После 100 полных циклов агента создаем и обновляем (больше-лучше)
+      learning_rate: 3.0e-4 #Шаг обучения(меньше-лучше)
+      beta: 5.0e-4          #Случайность действий
+      epsilon: 0.2          #Разность при обновлении локальных экстремумов старой и новой версии
+      lambd: 0.99           #Авторитетность оценок значений во времени
+      num_epoch: 3          #Количество повторений во время обновления локальных экстремумов
+      learning_rate_schedule: linear  #График шага обучения
+    network_settings:     #Сетевые настройки
+      normalize: false  #Нормализация входных данных
+      hidden_units: 128 #Скрытые нейроны
+      num_layers: 2   #Скрытые слои для предыдущего параметра
+    reward_signals:   #Вознаграждение
+      extrinsic:
+        gamma: 0.99  #Размер вознагреждения
+        strength: 1.0   #Шаг для learning_rate_schedule
+    max_steps: 500000  #Шаги моделирования в процессе обучения
+    time_horizon: 64   #Количество циклов агента до ввода в модель
+    summary_freq: 10000  #Суммарная частота
 
 ```
 
 ## Задание 3
 ### Какова роль параметра Lr? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ. В качестве эксперимента можете изменить значение параметра.
 
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
 
-```py
-
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
-
-```
 
 ## Выводы
 
