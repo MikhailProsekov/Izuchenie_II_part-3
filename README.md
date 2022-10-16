@@ -120,7 +120,7 @@ public class RollerAgent : Agent
 ```
 - После этих действий запускаю MLAgent и обучаю его
 ![image](https://user-images.githubusercontent.com/113620568/196039577-3a79c626-9482-46e3-8863-62df17644947.png)
-```
+```py
 behaviors:
   RollerBall:
     trainer_type: ppo
@@ -144,7 +144,7 @@ behaviors:
     max_steps: 500000
     time_horizon: 64
     summary_freq: 10000
-    ```
+```
 В ходе выполнения программы куб хаотично респавнится в пределах плоскости,а шарик перемещается в сторону куба.
 
 
